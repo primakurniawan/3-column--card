@@ -1,0 +1,105 @@
+$mobile: 376px;
+$desktop: 1441px;
+
+$brightOrange: hsl(31, 77%, 52%);
+$darkCyan: hsl(184, 100%, 22%);
+$veryDarkCyan: hsl(179, 100%, 13%);
+
+$transparentWhite: hsla(0, 0%, 100%, 0.75); //(paragraphs)
+$veryLightGray: hsl(0, 0%, 95%); //(background, headings, buttons)
+
+$fontSize: 15px;
+
+@mixin laptop {
+  @media (min-width: $mobile) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: $fontSize;
+  font-family: "Lexend Deca", "Big Shoulders Display", sans-serif;
+  font-weight: 400;
+  line-height: 1.25;
+  background: $veryLightGray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 6rem 2rem;
+  color: $transparentWhite;
+}
+
+a {
+  text-decoration: none;
+}
+
+.button {
+  background: $veryLightGray;
+  padding: 1rem 2rem;
+  display: inline-block;
+  border-radius: 2rem;
+}
+
+.card {
+  display: grid;
+  max-width: 900px;
+  @include laptop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__item {
+    padding: 3rem;
+
+    > *:not(:first-child) {
+      margin-top: 1rem;
+    }
+
+    &__title {
+      font-size: 3rem;
+      color: $veryLightGray;
+      font-family: "Big Shoulders Display";
+      font-weight: 700;
+    }
+
+    &__btn:first {
+      color: $brightOrange;
+    }
+    &__btn:nth-child(2) {
+      color: $darkCyan;
+    }
+    &__btn:first {
+      color: $veryDarkCyan;
+    }
+  }
+
+  &__item:first-child {
+    border-radius: 10px 10px 0 0;
+    background-color: $brightOrange;
+    @include laptop {
+      border-radius: 10px 0 0 10px;
+    }
+  }
+
+  &__item:nth-child(2) {
+    background-color: $darkCyan;
+    @include laptop {
+      border-radius: 0 0 0 0;
+    }
+  }
+
+  &__item:last-child {
+    border-radius: 0 0 10px 10px;
+    background-color: $veryDarkCyan;
+    @include laptop {
+      border-radius: 0 10px 10px 0;
+    }
+  }
+}
